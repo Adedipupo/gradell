@@ -32,7 +32,7 @@ export class UserController {
   async getProfile(req: Request, res: Response) {
     try {
       const userId = req.user?.id;
-      const user = await this.userService.getProfile(userId);
+      const user = await this.userService.getProfile(userId!);
       res.json(user);
     } catch (error:any) {
       res.status(400).json({ error: error.message });

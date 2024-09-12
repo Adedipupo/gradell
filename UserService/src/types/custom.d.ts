@@ -5,7 +5,7 @@ import { Request } from 'express';
 declare module 'express' {
   interface Request {
     user?: {
-      id: any;
+      id: string;
       // Add other properties if needed
     };
   }
