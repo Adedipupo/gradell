@@ -8,8 +8,8 @@ app.use(express.json());
 
 const userController = new UserController();
 
-app.post('/register', userController.register);
-app.post('/login', userController.login);
+app.post('/register', userController.register.bind(userController));  // bind the context
+app.post('/login', userController.login.bind(userController));
 app.get('/profile', authMiddleware, userController.getProfile);
 
 // MongoDB connection setup

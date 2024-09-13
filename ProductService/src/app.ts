@@ -7,11 +7,12 @@ app.use(express.json());
 
 const productController = new ProductController();
 
-app.post('/products', productController.createProduct);
-app.get('/products', productController.getProducts);
-app.get('/products/:id', productController.getProductById);
-app.put('/products/:id', productController.updateProduct);
-app.delete('/products/:id', productController.deleteProduct);
+
+app.post('/products', productController.createProduct.bind(productController));
+app.get('/products', productController.getProducts.bind(productController));
+app.get('/products/:id', productController.getProductById.bind(productController));
+app.put('/products/:id', productController.updateProduct.bind(productController));
+app.delete('/products/:id', productController.deleteProduct.bind(productController));
 
 // MongoDB connection setup
 mongoose.connect('mongodb://localhost:27017/productService')
@@ -19,6 +20,6 @@ mongoose.connect('mongodb://localhost:27017/productService')
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Start the Product Service
-app.listen(3001, () => {
+app.listen(3002, () => {
   console.log('Product Service running on port 3001');
 });
