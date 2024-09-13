@@ -1,28 +1,30 @@
-import { db } from '../config/db';
 import bcrypt from 'bcrypt';
+import { User } from './userModel'; // Assuming you have a User model defined with Mongoose
 
 export class UserService {
   async register(data: { email: string; password: string }) {
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    const result = await db.query(
-      'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *',
-      [data.email, hashedPassword]
-    );
-    return result.rows[0];
+    const newUser = new User({
+      email: data.email,
+      password: hashedPassword,
+    });
+    const user = await newUser.save();
+    return user;
   }
 
   async login(email: string, password: string) {
-    const user = await db.query('SELECT * FROM users WHERE email = $1', [email]);
-    if (user.rows.length === 0) throw new Error('User not found');
+    const user = await User.findOne({ email });
+    if (!user) throw new Error('User not found');
 
-    const validPassword = await bcrypt.compare(password, user.rows[0].password);
+    const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) throw new Error('Invalid password');
 
-    return user.rows[0];
+    return user;
   }
 
   async getProfile(userId: string) {
-    const result = await db.query('SELECT * FROM users WHERE id = $1', [userId]);
-    return result.rows[0];
+    const user = await User.findById(userId);
+    if (!user) throw new Error('User not found');
+    return user;
   }
 }

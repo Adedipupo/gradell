@@ -13,7 +13,7 @@ export class UserController {
     try {
       const user = await this.userService.register(req.body);
       res.status(201).json(user);
-    } catch (error:any) {
+    } catch (error: any) {
       res.status(400).json({ error: error.message });
     }
   }
@@ -22,9 +22,9 @@ export class UserController {
     try {
       const { email, password } = req.body;
       const user = await this.userService.login(email, password);
-      const token = jwt.sign({ id: user.id }, '12dedah324');
+      const token = jwt.sign({ id: user._id }, '12dedah324');
       res.json({ token });
-    } catch (error:any) {
+    } catch (error: any) {
       res.status(400).json({ error: error.message });
     }
   }
@@ -34,7 +34,7 @@ export class UserController {
       const userId = req.user?.id;
       const user = await this.userService.getProfile(userId!);
       res.json(user);
-    } catch (error:any) {
+    } catch (error: any) {
       res.status(400).json({ error: error.message });
     }
   }

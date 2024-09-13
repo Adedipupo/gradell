@@ -1,11 +1,9 @@
 import express from 'express';
-import { db } from './config/db';
-import { ProductController } from './product/prodcutController';
-
+import mongoose from 'mongoose';
+import { ProductController } from './product/productController';
 
 const app = express();
 app.use(express.json());
-
 
 const productController = new ProductController();
 
@@ -15,12 +13,12 @@ app.get('/products/:id', productController.getProductById);
 app.put('/products/:id', productController.updateProduct);
 app.delete('/products/:id', productController.deleteProduct);
 
-// Start the User Service
+// MongoDB connection setup
+mongoose.connect('mongodb://localhost:27017/productService')
+  .then(() => console.log('Connected to MongoDB for Product Service'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Start the Product Service
 app.listen(3001, () => {
-    console.log('Product Service running on port 3001');
-  });
-  
-  // PostgreSQL connection setup
-  db.connect()
-    .then(() => console.log('Connected to PostgreSQL for Postgres Service'))
-    .catch(err => console.error('PostgreSQL connection error:', err));
+  console.log('Product Service running on port 3001');
+});
