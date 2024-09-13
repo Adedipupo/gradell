@@ -11,7 +11,7 @@ export class PaymentService {
       },
       {
         headers: {
-          Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
+          Authorization: `Bearer sk_test_a397a658d9a4a6541b4bea1ee82d06fe67b665fc`,
         },
       }
     );
