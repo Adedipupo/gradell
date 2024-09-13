@@ -30,8 +30,8 @@ const orderService = new OrderService(producer);
 const orderController = new OrderController(orderService);
 
 // // Order routes
-app.post('/orders', orderController.createOrder);
-app.get('/orders', orderController.getOrders);
+app.post('/api/orders/create', orderController.createOrder.bind(orderController));
+app.get('/api/orders/all', orderController.getOrders.bind(orderController));
 
 // Start the Order Service
 app.listen(3003, () => {

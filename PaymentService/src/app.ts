@@ -7,11 +7,11 @@ app.use(express.json());
 
 const paymentController = new PaymentController();
 
-app.post('/payments', paymentController.createPayment);
-app.post('/payments/webhook', paymentController.handleWebhook);
+app.post('/api/payments/create', paymentController.createPayment.bind(paymentController));
+app.post('/payments/webhook', paymentController.handleWebhook.bind(paymentController));
 
 // MongoDB connection setup
-mongoose.connect('mongodb://localhost:27017/paymentService')
+mongoose.connect('mongodb://localhost:27017/paymentservice')
   .then(() => console.log('Connected to MongoDB for Payment Service'))
   .catch(err => console.error('MongoDB connection error:', err));
 

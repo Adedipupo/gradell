@@ -10,8 +10,9 @@ export class PaymentController {
 
   async createPayment(req: Request, res: Response) {
     try {
-      const payment = await this.paymentService.initiate(req.body);
-      res.json(payment);
+      const { orderId, amount, email } = req.body;
+      const paymentResponse = await this.paymentService.initiate(orderId, amount, email);
+      res.json(paymentResponse);
     } catch (error: any) {
       res.status(400).json({ error: error.message });
     }

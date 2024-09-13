@@ -11,11 +11,12 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-app.use(morgan('combined', { stream: accessLogStream }))
+app.use(morgan('combined'))
 
 // Route to User Service
 app.all('/api/users/*', (req, res) => {
-  const url = `http://localhost:3000${req.originalUrl}`;
+  console.log("here")
+  const url = `http://localhost:3001${req.originalUrl}`;
   axios({ method: req.method, url, data: req.body })
     .then(response => res.send(response.data))
     .catch(err => res.status(err.response.status).send(err.response.data));
@@ -23,7 +24,7 @@ app.all('/api/users/*', (req, res) => {
 
 // Route to Product Service
 app.all('/api/products/*', (req, res) => {
-  const url = `http://localhost:3001${req.originalUrl}`;
+  const url = `http://localhost:3002${req.originalUrl}`;
   axios({ method: req.method, url, data: req.body })
     .then(response => res.send(response.data))
     .catch(err => res.status(err.response.status).send(err.response.data));

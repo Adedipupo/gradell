@@ -8,11 +8,11 @@ app.use(express.json());
 const productController = new ProductController();
 
 
-app.post('/products', productController.createProduct.bind(productController));
-app.get('/products', productController.getProducts.bind(productController));
-app.get('/products/:id', productController.getProductById.bind(productController));
-app.put('/products/:id', productController.updateProduct.bind(productController));
-app.delete('/products/:id', productController.deleteProduct.bind(productController));
+app.post('/api/products/create', productController.createProduct.bind(productController));
+app.get('/api/products/all', productController.getProducts.bind(productController));
+app.get('/api/products/:id', productController.getProductById.bind(productController));
+app.put('/api/products/:id', productController.updateProduct.bind(productController));
+app.delete('api/products/:id', productController.deleteProduct.bind(productController));
 
 // MongoDB connection setup
 mongoose.connect('mongodb://localhost:27017/productService')
