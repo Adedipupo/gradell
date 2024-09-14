@@ -13,7 +13,7 @@ app.post('/api/users/login', userController.login.bind(userController));
 app.get('/profile', authMiddleware, userController.getProfile);
 
 // MongoDB connection setup
-mongoose.connect('mongodb://localhost:27017/user')
+mongoose.connect('mongodb+srv://dipo:12345@cluster0.vafzi.mongodb.net/')
   .then(() => console.log('Connected to MongoDB for User Service'))
   .catch(err => console.error('MongoDB connection error:', err));
 

@@ -15,7 +15,7 @@ app.put('/api/products/:id', productController.updateProduct.bind(productControl
 app.delete('api/products/:id', productController.deleteProduct.bind(productController));
 
 // MongoDB connection setup
-mongoose.connect('mongodb://localhost:27017/productService')
+mongoose.connect('mongodb+srv://dipo:12345@cluster0.ixzicdr.mongodb.net/')
   .then(() => console.log('Connected to MongoDB for Product Service'))
   .catch(err => console.error('MongoDB connection error:', err));
 

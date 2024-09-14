@@ -21,7 +21,7 @@ producer.on('error', (err) => {
 });
 
 // MongoDB connection setup
-mongoose.connect('mongodb://localhost:27017/orders')
+mongoose.connect('mongodb+srv://dipo:12345@cluster0.ns5b8.mongodb.net/')
   .then(() => console.log('Connected to MongoDB for Order Service'))
   .catch(err => console.error('MongoDB connection error:', err));
 
