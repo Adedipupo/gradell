@@ -15,7 +15,7 @@ app.use(morgan('combined'))
 
 // Route to User Service
 app.all('/api/users/*', (req, res) => {
-  const url = `http://localhost:3001${req.originalUrl}`;
+  const url = `https://gradell-user.onrender.com${req.originalUrl}`;
   axios({ method: req.method, url, data: req.body })
     .then(response => res.send(response.data))
     .catch(err => res.status(err.response.status).send(err.response.data));
