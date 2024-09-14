@@ -18,6 +18,7 @@ mongoose.connect('mongodb+srv://dipo:12345@cluster0.vafzi.mongodb.net/')
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Start the User Service
-app.listen(3001, () => {
-  console.log('User Service running on port 3001');
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`User Service running on port ${PORT}`);
 });

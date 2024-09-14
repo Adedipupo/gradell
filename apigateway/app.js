@@ -15,7 +15,6 @@ app.use(morgan('combined'))
 
 // Route to User Service
 app.all('/api/users/*', (req, res) => {
-  console.log("here")
   const url = `http://localhost:3001${req.originalUrl}`;
   axios({ method: req.method, url, data: req.body })
     .then(response => res.send(response.data))
@@ -46,7 +45,7 @@ app.all('/api/payments/*', (req, res) => {
     .catch(err => res.status(err.response.status).send(err.response.data));
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`API Gateway running on port ${PORT}`);
 });
