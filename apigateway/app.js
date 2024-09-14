@@ -23,7 +23,7 @@ app.all('/api/users/*', (req, res) => {
 
 // Route to Product Service
 app.all('/api/products/*', (req, res) => {
-  const url = `http://localhost:3002${req.originalUrl}`;
+  const url = `https://gradell-1.onrender.com${req.originalUrl}`;
   axios({ method: req.method, url, data: req.body })
     .then(response => res.send(response.data))
     .catch(err => res.status(err.response.status).send(err.response.data));
@@ -31,7 +31,7 @@ app.all('/api/products/*', (req, res) => {
 
 // Route to Order Service
 app.all('/api/orders/*', (req, res) => {
-  const url = `http://localhost:3003${req.originalUrl}`;
+  const url = `https://gradell-2.onrender.com${req.originalUrl}`;
   axios({ method: req.method, url, data: req.body })
     .then(response => res.send(response.data))
     .catch(err => res.status(err.response.status).send(err.response.data));
@@ -39,7 +39,7 @@ app.all('/api/orders/*', (req, res) => {
 
 // Route to Payment Service
 app.all('/api/payments/*', (req, res) => {
-  const url = `http://localhost:3004${req.originalUrl}`;
+  const url = `https://gradell-3.onrender.com${req.originalUrl}`;
   axios({ method: req.method, url, data: req.body })
     .then(response => res.send(response.data))
     .catch(err => res.status(err.response.status).send(err.response.data));
