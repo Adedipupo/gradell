@@ -16,4 +16,6 @@ mongoose.connect('mongodb+srv://dipo:12345@cluster0.hsmvzfx.mongodb.net/')
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Start the Payment Service
-app.listen(3004, () => console.log('Payment Service running on port 3004'));
+const PORT = process.env.PORT || 3002;
+
+app.listen(PORT, () => console.log(`Payment Service running on port ${PORT}`));

@@ -34,6 +34,8 @@ app.post('/api/orders/create', orderController.createOrder.bind(orderController)
 app.get('/api/orders/all', orderController.getOrders.bind(orderController));
 
 // Start the Order Service
-app.listen(3003, () => {
-  console.log('Order Service running on port 3003');
+const PORT = process.env.PORT || 3002;
+
+app.listen(PORT, () => {
+  console.log(`Order Service running on port ${PORT}`);
 });

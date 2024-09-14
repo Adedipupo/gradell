@@ -20,6 +20,8 @@ mongoose.connect('mongodb+srv://dipo:12345@cluster0.ixzicdr.mongodb.net/')
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Start the Product Service
-app.listen(3002, () => {
-  console.log('Product Service running on port 3001');
+const PORT = process.env.PORT || 3002;
+
+app.listen(PORT, () => {
+  console.log(`Product Service running on port ${PORT}`);
 });
